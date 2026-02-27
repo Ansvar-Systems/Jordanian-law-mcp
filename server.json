@@ -1,0 +1,38 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "eu.ansvar/jordanian-law-mcp",
+  "description": "Jordan legislation via MCP -- full-text search across statutes and provisions",
+  "repository": {
+    "url": "https://github.com/Ansvar-Systems/jordanian-law-mcp",
+    "source": "github"
+  },
+  "homepage": "https://ansvar.eu",
+  "version": "1.0.0",
+  "license": "Apache-2.0",
+  "keywords": [
+    "jordanian-law",
+    "jordanian",
+    "legal",
+    "compliance",
+    "mcp"
+  ],
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "@ansvar/jordanian-law-mcp",
+      "version": "1.0.0",
+      "transport": {
+        "type": "stdio"
+      }
+    },
+    {
+      "registryType": "npm",
+      "identifier": "@ansvar/jordanian-law-mcp",
+      "version": "1.0.0",
+      "transport": {
+        "type": "streamable-http",
+        "url": "https://jordanian-law-mcp.vercel.app/mcp"
+      }
+    }
+  ]
+}
