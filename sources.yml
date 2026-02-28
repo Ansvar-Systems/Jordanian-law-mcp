@@ -4,29 +4,25 @@ mcp_name: "Jordan Law MCP"
 jurisdiction: "JO"
 
 sources:
-  - name: "Jordan Official Legal Database"
+  - name: "Legislation and Opinion Bureau"
     authority: "Government of Jordan"
-    official_portal: "https://moj.gov.jo"
-    canonical_identifier: "TBD"
-    retrieval_method: "HTML"
+    official_portal: "https://lob.gov.jo"
+    canonical_identifier: "lob.gov.jo"
+    retrieval_method: "curated (Angular SPA)"
     api_documentation: "N/A"
-    update_frequency: "TBD"
-    last_ingested: "PENDING_FIRST_INGEST"
+    update_frequency: "as enacted"
+    last_ingested: "2026-02-28"
     license_or_terms:
       type: "Government Publication"
-      url: "https://moj.gov.jo"
+      url: "https://lob.gov.jo"
       summary: "Official government legal database; legislation is public domain as government publication"
     coverage:
-      scope: "TBD -- update after census"
-      limitations: "TBD -- update after census"
+      scope: "25 core laws covering constitution, cybercrime, e-transactions, banking, AML, labor, competition, consumer protection, investment"
+      limitations: "Curated census (LOB is Angular SPA, MOJ serves PDFs). Does not include subsidiary legislation or ministerial orders."
     languages:
-      - "en"
+      - "ar"
 
 data_freshness:
   automated_checks: false
-  check_frequency: "TBD"
-  last_verified: "2026-02-27"
-
-# Notes:
-# - Source URL: moj.gov.jo
-# - Update this file after completing census and first ingestion
+  check_frequency: "monthly"
+  last_verified: "2026-02-28"

@@ -449,8 +449,8 @@ function buildDatabase(): void {
     insertMeta.run('schema_version', '2');
     insertMeta.run('built_at', new Date().toISOString());
     insertMeta.run('builder', 'build-db.ts');
-    insertMeta.run('jurisdiction', 'KE');
-    insertMeta.run('source', 'moj.gov.jo');
+    insertMeta.run('jurisdiction', 'JO');
+    insertMeta.run('source', 'lob.gov.jo');
     insertMeta.run('licence', 'Government Open Data');
   });
   writeMeta();

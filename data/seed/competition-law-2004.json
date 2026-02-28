@@ -1,0 +1,43 @@
+{
+  "id": "competition-law-2004",
+  "type": "statute",
+  "title": "قانون المنافسة رقم 33 لسنة 2004",
+  "title_en": "Competition Law No. 33 of 2004",
+  "short_name": "Competition Law 2004",
+  "status": "in_force",
+  "issued_date": "2004-08-02",
+  "in_force_date": "2004-08-02",
+  "url": "https://lob.gov.jo",
+  "description": "Competition and antitrust law regulating market competition in Jordan",
+  "provisions": [
+    {
+      "provision_ref": "art1",
+      "section": "1",
+      "title": "المادة 1",
+      "content": "يسمى هذا القانون (قانون المنافسة لسنة 2004) ويعمل به بعد ستين يوما من تاريخ نشره في الجريدة الرسمية.",
+      "chapter": "أحكام عامة"
+    },
+    {
+      "provision_ref": "art3",
+      "section": "3",
+      "title": "المادة 3",
+      "content": "يهدف هذا القانون إلى حماية المنافسة ومنع الاحتكار والممارسات المقيدة للمنافسة وحماية مصالح المستهلكين.",
+      "chapter": "أحكام عامة"
+    },
+    {
+      "provision_ref": "art5",
+      "section": "5",
+      "title": "المادة 5",
+      "content": "يحظر أي اتفاق أو تحالف أو ممارسة مشتركة بين المنشآت المتنافسة يكون من شأنه الإخلال بالمنافسة.",
+      "chapter": "الممارسات المحظورة"
+    },
+    {
+      "provision_ref": "art8",
+      "section": "8",
+      "title": "المادة 8",
+      "content": "يحظر على المنشأة التي تتمتع بوضع مهيمن في السوق التعسف في استعمال ذلك الوضع.",
+      "chapter": "الهيمنة والتعسف"
+    }
+  ],
+  "definitions": []
+}
