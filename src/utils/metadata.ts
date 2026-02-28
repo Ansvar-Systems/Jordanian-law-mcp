@@ -30,12 +30,12 @@ export function generateResponseMetadata(
   }
 
   return {
-    data_source: 'Jordan Law (moj.gov.jo) — National Council for Law Reporting',
-    jurisdiction: 'KE',
+    data_source: 'Jordanian Legislation (jordan-lawyer.com, jordanlaws.org, constituteproject.org)',
+    jurisdiction: 'JO',
     disclaimer:
-      'This data is sourced from Jordan Law under Government Open Data principles. ' +
-      'The authoritative versions are in English. Swahili translations may be available for some documents. ' +
-      'Always verify with the official Jordan Law portal (moj.gov.jo).',
+      'This data is sourced from publicly available Jordanian legal texts. ' +
+      'The authoritative versions are published in the Official Gazette (الجريدة الرسمية). ' +
+      'Content is in Arabic. Always verify with the official Legislation and Opinion Bureau (lob.gov.jo).',
     freshness,
   };
 }

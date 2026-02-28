@@ -450,8 +450,8 @@ function buildDatabase(): void {
     insertMeta.run('built_at', new Date().toISOString());
     insertMeta.run('builder', 'build-db.ts');
     insertMeta.run('jurisdiction', 'JO');
-    insertMeta.run('source', 'lob.gov.jo');
-    insertMeta.run('licence', 'Government Open Data');
+    insertMeta.run('source', 'jordan-lawyer.com, jordanlaws.org, constituteproject.org');
+    insertMeta.run('licence', 'Government Publication (public domain)');
   });
   writeMeta();
 

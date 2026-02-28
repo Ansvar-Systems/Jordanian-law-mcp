@@ -1,14 +1,18 @@
 /**
- * Rate-limited HTTP client for Jordan Law (moj.gov.jo)
+ * Rate-limited HTTP client for Jordanian law sources.
  *
- * - 500ms minimum delay between requests (be respectful to government servers)
+ * Sources:
+ *   - jordan-lawyer.com (WordPress, full-text HTML)
+ *   - jordanlaws.org (WordPress, full-text HTML)
+ *   - constituteproject.org (Constitution)
+ *
+ * - 1000ms minimum delay between requests (be respectful)
  * - User-Agent header identifying the MCP
- * - Fetches structured AKN HTML from moj.gov.jo
- * - No auth needed (Government Open Data)
+ * - No auth needed (public content)
  */
 
 const USER_AGENT = 'jordanian-law-mcp/1.0 (https://github.com/Ansvar-Systems/jordanian-law-mcp; hello@ansvar.ai)';
-const MIN_DELAY_MS = 500;
+const MIN_DELAY_MS = 1000;
 
 let lastRequestTime = 0;
 

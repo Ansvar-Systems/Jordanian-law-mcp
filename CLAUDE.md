@@ -1,4 +1,4 @@
-# Jordan Law MCP Server — Developer Guide
+# Jordan Law MCP Server -- Developer Guide
 
 ## Git Workflow
 
@@ -8,12 +8,13 @@
 
 ## Project Overview
 
-Jordan Law MCP server providing Jordanian legislation search via Model Context Protocol. Strategy A deployment (Vercel, bundled SQLite DB). Covers data protection, cybercrimes, ICT, companies, consumer protection, and other key Acts.
+Jordan Law MCP server providing Jordanian legislation search via Model Context Protocol. Strategy A deployment (Vercel, bundled SQLite DB). Covers 62 statutes including the Constitution, Civil Code, Penal Code, Commercial Code, Labor Law, Data Protection Law, Cybercrime Law, Companies Law, and other major legislation. All content in Arabic.
 
 ## Architecture
 
 - **Transport:** Dual-channel -- stdio (npm package) + Streamable HTTP (Vercel serverless)
 - **Database:** SQLite + FTS5 via `@ansvar/mcp-sqlite` (WASM-compatible, no WAL mode)
+- **FTS5 tokenizer:** `unicode61` (supports Arabic text search)
 - **Entry points:** `src/index.ts` (stdio), `api/mcp.ts` (Vercel HTTP)
 - **Tool registry:** `src/tools/registry.ts` -- shared between both transports
 - **Capability gating:** `src/capabilities.ts` -- detects available DB tables at runtime
@@ -26,14 +27,13 @@ Jordan Law MCP server providing Jordanian legislation search via Model Context P
 - Every tool returns `ToolResponse<T>` with `results` + `_metadata` (freshness, disclaimer)
 - Tool descriptions are written for LLM agents -- explain WHEN and WHY to use each tool
 - Capability-gated tools only appear in `tools/list` when their DB tables exist
-- Jordan uses "Section N" for Acts and "Article N" for the Constitution
+- Jordan uses "المادة" (al-madda / article) for provisions throughout legislation
 
 ## Testing
 
-- Unit tests: `tests/` (vitest, in-memory SQLite fixtures)
 - Contract tests: `__tests__/contract/golden.test.ts` with `fixtures/golden-tests.json`
 - Nightly mode: `CONTRACT_MODE=nightly` enables network assertions
-- Run: `npm test` (unit), `npm run test:contract` (golden), `npm run validate` (both)
+- Run: `npm test` (all tests), `npm run test:contract` (golden only)
 
 ## Database
 
@@ -44,29 +44,32 @@ Jordan Law MCP server providing Jordanian legislation search via Model Context P
 
 ## Data Pipeline
 
-1. `scripts/ingest.ts` -> fetches from Jordan Law -> JSON seed files in `data/seed/`
-2. `scripts/build-db.ts` -> seed JSON -> SQLite database in `data/database.db`
-3. `scripts/drift-detect.ts` -> verifies upstream content hasn't changed
+1. `scripts/census.ts` -> enumerates all discoverable Jordanian laws from public sources
+2. `scripts/ingest.ts` -> fetches HTML from sources, parses with parser.ts -> JSON seed files in `data/seed/`
+3. `scripts/build-db.ts` -> seed JSON -> SQLite database in `data/database.db`
+4. `scripts/generate-coverage.ts` -> generates COVERAGE.md from census data
 
-## Data Source
+## Data Sources
 
-- **Jordan Law** (jordanlaw.org) -- National Council for Law Reporting
-- **License:** Government Open Data
-- **Languages:** English (en) is the primary legal language; Swahili (sw) for some documents
-- **Coverage:** All Acts of Parliament, subsidiary legislation, Constitution of Jordan 2010, selected case law
+- **jordan-lawyer.com** -- Primary source (54 statutes, WordPress full-text HTML in Arabic)
+- **jordanlaws.org** -- Secondary source (additional statutes, WordPress full-text HTML)
+- **constituteproject.org** -- Constitution of the Hashemite Kingdom of Jordan (1952, as amended)
+- **License:** Government Publication (public domain)
+- **Language:** Arabic (ar)
+- **Coverage:** 62 statutes, 5,285 provisions, 100% of discoverable ingestable laws
 
 ## Jordan-Specific Notes
 
-- Jordan uses a common law legal system inherited from British colonial administration
-- The Constitution of Jordan 2010 is the supreme law (Article 2)
-- Legislation is identified by Act title + year (e.g., "Data Protection Act 2019")
-- Citations follow the pattern: "Section N, [Act Title Year]" or shorthand "s N"
-- For the Constitution: "Article N, Constitution of Jordan 2010"
-- The Data Protection Act 2019 was significantly influenced by EU GDPR
-- Some sections of the Computer Misuse and Cybercrimes Act 2018 are suspended by court order
-- The Office of the Data Protection Commissioner (ODPC) is the data protection supervisory authority
+- Jordan uses a **civil law** legal system based on French and Ottoman legal traditions
+- The Constitution of 1952 is the supreme law (amended multiple times, most recently 2022)
+- The Legislation and Opinion Bureau (ديوان التشريع والرأي / lob.gov.jo) is the official repository
+- LOB uses an Angular SPA with encrypted RSA/AES API -- not scrapable; we use jordan-lawyer.com instead
+- Legislation is identified by law title + number + year (e.g., "قانون العقوبات رقم 16 لسنة 1960")
+- Arabic article markers: "المادة" (al-madda) for articles, "الباب" for parts, "الفصل" for chapters
+- Jordan enacted the Personal Data Protection Law No. 24 of 2023 (influenced by EU GDPR)
+- The Anti-Money Laundering and Counter-Terrorism Financing Law No. 46 of 2007 follows FATF recommendations
 
 ## Deployment
 
 - Vercel Strategy A: DB bundled in `data/database.db`, included via `vercel.json` includeFiles
-- npm package: `@ansvar/jordan-law-mcp` with bin entry for stdio
+- npm package: `@ansvar/jordanian-law-mcp` with bin entry for stdio

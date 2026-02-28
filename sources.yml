@@ -4,23 +4,60 @@ mcp_name: "Jordan Law MCP"
 jurisdiction: "JO"
 
 sources:
-  - name: "Legislation and Opinion Bureau"
-    authority: "Government of Jordan"
-    official_portal: "https://lob.gov.jo"
-    canonical_identifier: "lob.gov.jo"
-    retrieval_method: "curated (Angular SPA)"
+  - name: "jordan-lawyer.com"
+    authority: "Community legal portal (publishes official Jordanian legislation)"
+    official_portal: "https://jordan-lawyer.com"
+    canonical_identifier: "jordan-lawyer.com"
+    retrieval_method: "HTML scraping (WordPress pages)"
     api_documentation: "N/A"
     update_frequency: "as enacted"
     last_ingested: "2026-02-28"
     license_or_terms:
       type: "Government Publication"
-      url: "https://lob.gov.jo"
-      summary: "Official government legal database; legislation is public domain as government publication"
+      url: "https://jordan-lawyer.com"
+      summary: "Jordanian legislation is public domain as government publication; portal provides full-text Arabic HTML"
     coverage:
-      scope: "25 core laws covering constitution, cybercrime, e-transactions, banking, AML, labor, competition, consumer protection, investment"
-      limitations: "Curated census (LOB is Angular SPA, MOJ serves PDFs). Does not include subsidiary legislation or ministerial orders."
+      scope: "54 core statutes: Civil Code, Penal Code, Commercial Code, Labor Law, Companies Law, Data Protection Law, Cybercrime Law, and 47 more"
+      limitations: "Does not include subsidiary legislation, ministerial orders, or regulations. Some newer laws may not yet be available."
     languages:
       - "ar"
+
+  - name: "jordanlaws.org"
+    authority: "Community legal portal"
+    official_portal: "https://jordanlaws.org"
+    canonical_identifier: "jordanlaws.org"
+    retrieval_method: "HTML scraping (WordPress pages)"
+    api_documentation: "N/A"
+    update_frequency: "as enacted"
+    last_ingested: "2026-02-28"
+    license_or_terms:
+      type: "Government Publication"
+      url: "https://jordanlaws.org"
+      summary: "Jordanian legislation published as full-text Arabic HTML"
+    coverage:
+      scope: "7 statutes not available on jordan-lawyer.com, including Electronic Transactions Law"
+      limitations: "Smaller catalog than jordan-lawyer.com"
+    languages:
+      - "ar"
+
+  - name: "constituteproject.org"
+    authority: "Comparative Constitutions Project"
+    official_portal: "https://constituteproject.org"
+    canonical_identifier: "constituteproject.org"
+    retrieval_method: "HTML scraping"
+    api_documentation: "N/A"
+    update_frequency: "as amended"
+    last_ingested: "2026-02-28"
+    license_or_terms:
+      type: "Creative Commons"
+      url: "https://constituteproject.org"
+      summary: "Constitution text available under Creative Commons license"
+    coverage:
+      scope: "Constitution of the Hashemite Kingdom of Jordan (1952, as amended)"
+      limitations: "Constitution only"
+    languages:
+      - "ar"
+      - "en"
 
 data_freshness:
   automated_checks: false

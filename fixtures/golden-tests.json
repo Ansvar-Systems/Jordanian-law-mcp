@@ -91,13 +91,14 @@
     {
       "id": "jo-search-005",
       "category": "search",
-      "description": "Search for consumer protection",
+      "description": "Search for consumer protection provisions",
       "tool": "search_legislation",
       "input": {
-        "query": "حماية المستهلك"
+        "query": "المستهلك"
       },
       "assertions": {
         "result_not_empty": true,
+        "min_results": 1,
         "any_result_contains": ["المستهلك"]
       }
     },

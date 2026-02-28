@@ -44,12 +44,12 @@ export function getAbout(db: InstanceType<typeof Database>, context: AboutContex
       eu_references: safeCount(db, 'SELECT COUNT(*) as count FROM eu_references'),
     },
     data_source: {
-      name: 'Jordan Law',
-      authority: 'National Council for Law Reporting',
-      url: 'http://moj.gov.jo',
-      license: 'Government Open Data',
-      jurisdiction: 'KE',
-      languages: ['en', 'sw'],
+      name: 'Jordanian Legislation',
+      authority: 'Legislation and Opinion Bureau (ديوان التشريع والرأي)',
+      url: 'https://lob.gov.jo',
+      license: 'Government Publication (public domain)',
+      jurisdiction: 'JO',
+      languages: ['ar'],
     },
   };
 }
