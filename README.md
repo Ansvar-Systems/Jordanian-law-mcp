@@ -38,12 +38,12 @@ This MCP server makes Jordanian law **searchable, cross-referenceable, and AI-re
 
 > Connect directly to the hosted version -- zero dependencies, nothing to install.
 
-**Endpoint:** `https://jordanian-law-mcp.vercel.app/mcp`
+**Endpoint:** `https://mcp.ansvar.eu/law-jo/mcp`
 
 | Client | How to Connect |
 |--------|---------------|
 | **Claude.ai** | Settings > Connectors > Add Integration > paste URL |
-| **Claude Code** | `claude mcp add jordanian-law --transport http https://jordanian-law-mcp.vercel.app/mcp` |
+| **Claude Code** | `claude mcp add jordanian-law --transport http https://mcp.ansvar.eu/law-jo/mcp` |
 | **Claude Desktop** | Add to config (see below) |
 | **GitHub Copilot** | Add to VS Code settings (see below) |
 
@@ -54,7 +54,7 @@ This MCP server makes Jordanian law **searchable, cross-referenceable, and AI-re
   "mcpServers": {
     "jordanian-law": {
       "type": "url",
-      "url": "https://jordanian-law-mcp.vercel.app/mcp"
+      "url": "https://mcp.ansvar.eu/law-jo/mcp"
     }
   }
 }
@@ -67,7 +67,7 @@ This MCP server makes Jordanian law **searchable, cross-referenceable, and AI-re
   "github.copilot.chat.mcp.servers": {
     "jordanian-law": {
       "type": "http",
-      "url": "https://jordanian-law-mcp.vercel.app/mcp"
+      "url": "https://mcp.ansvar.eu/law-jo/mcp"
     }
   }
 }
