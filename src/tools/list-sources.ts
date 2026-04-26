@@ -42,37 +42,7 @@ export async function listSources(
 
   return {
     results: {
-      sources: [
-        {
-          name: 'jordan-lawyer.com',
-          authority: 'Community legal portal (full-text Arabic legislation)',
-          url: 'https://jordan-lawyer.com',
-          license: 'Government Publication (public domain)',
-          coverage:
-            'Primary source: 54 Jordanian statutes including Civil Code, Penal Code, ' +
-            'Commercial Code, Labor Law, Companies Law, Data Protection Law, ' +
-            'Cybercrime Law, and other major legislation. Full Arabic text.',
-          languages: ['ar'],
-        },
-        {
-          name: 'jordanlaws.org',
-          authority: 'Community legal portal (full-text Arabic legislation)',
-          url: 'https://jordanlaws.org',
-          license: 'Government Publication (public domain)',
-          coverage:
-            'Secondary source: Electronic Transactions Law, additional statutes ' +
-            'not available on jordan-lawyer.com.',
-          languages: ['ar'],
-        },
-        {
-          name: 'constituteproject.org',
-          authority: 'Comparative Constitutions Project',
-          url: 'https://constituteproject.org',
-          license: 'Creative Commons',
-          coverage: 'Constitution of the Hashemite Kingdom of Jordan (1952, as amended).',
-          languages: ['ar', 'en'],
-        },
-      ],
+      sources: [],
       database: {
         tier: meta.tier,
         schema_version: meta.schema_version,

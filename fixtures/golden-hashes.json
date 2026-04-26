@@ -1,7 +1,0 @@
-{
-  "$schema": "./golden-hashes.schema.json",
-  "version": "1.0",
-  "mcp_name": "Jordan Law MCP",
-  "jurisdiction": "JO",
-  "provisions": []
-}

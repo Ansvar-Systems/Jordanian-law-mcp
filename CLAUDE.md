@@ -1,4 +1,4 @@
-# Jordan Law MCP Server -- Developer Guide
+# Jordan Law MCP Server — Developer Guide
 
 ## Git Workflow
 
@@ -8,16 +8,21 @@
 
 ## Project Overview
 
-Jordan Law MCP server providing Jordanian legislation search via Model Context Protocol. Strategy A deployment (Vercel, bundled SQLite DB). Covers 62 statutes including the Constitution, Civil Code, Penal Code, Commercial Code, Labor Law, Data Protection Law, Cybercrime Law, Companies Law, and other major legislation. All content in Arabic.
+Jordan Law MCP server providing Jordanian legislation search via Model Context Protocol.
+
+**Status: QUARANTINED (2026-04-26).** Previous dataset removed — sources jordan-lawyer.com
+and jordanlaws.org were commercial/private aggregators with no recorded reuse rights.
+The server starts and responds but returns zero results. Backfill pending Phase 0 verification
+of the Official Gazette of Jordan (https://pm.gov.jo/).
 
 ## Architecture
 
-- **Transport:** Dual-channel -- stdio (npm package) + Streamable HTTP (Vercel serverless)
-- **Database:** SQLite + FTS5 via `@ansvar/mcp-sqlite` (WASM-compatible, no WAL mode)
+- **Transport:** stdio (npm package)
+- **Database:** SQLite + FTS5 via `@ansvar/mcp-sqlite` (WASM-compatible, DELETE journal mode)
 - **FTS5 tokenizer:** `unicode61` (supports Arabic text search)
-- **Entry points:** `src/index.ts` (stdio), `api/mcp.ts` (Vercel HTTP)
-- **Tool registry:** `src/tools/registry.ts` -- shared between both transports
-- **Capability gating:** `src/capabilities.ts` -- detects available DB tables at runtime
+- **Entry point:** `src/index.ts` (stdio)
+- **Tool registry:** `src/tools/registry.ts`
+- **Capability gating:** `src/capabilities.ts` — detects available DB tables at runtime
 
 ## Key Conventions
 
@@ -25,45 +30,46 @@ Jordan Law MCP server providing Jordanian legislation search via Model Context P
 - FTS5 queries go through `buildFtsQueryVariants()` with primary + fallback strategy
 - User input is sanitized via `sanitizeFtsInput()` before FTS5 queries
 - Every tool returns `ToolResponse<T>` with `results` + `_metadata` (freshness, disclaimer)
-- Tool descriptions are written for LLM agents -- explain WHEN and WHY to use each tool
+- Tool descriptions are written for LLM agents — explain WHEN and WHY to use each tool
 - Capability-gated tools only appear in `tools/list` when their DB tables exist
 - Jordan uses "المادة" (al-madda / article) for provisions throughout legislation
 
 ## Testing
 
 - Contract tests: `__tests__/contract/golden.test.ts` with `fixtures/golden-tests.json`
-- Nightly mode: `CONTRACT_MODE=nightly` enables network assertions
 - Run: `npm test` (all tests), `npm run test:contract` (golden only)
+- Golden tests are empty while the dataset is quarantined.
 
 ## Database
 
 - Schema defined inline in `scripts/build-db.ts`
-- Journal mode: DELETE (not WAL -- required for Vercel serverless)
-- Runtime: copied to `/tmp/database.db` on Vercel cold start
+- Journal mode: DELETE (required for WASM compatibility)
 - Metadata: `db_metadata` table stores tier, schema_version, built_at, builder
 
-## Data Pipeline
+## Data Pipeline (Quarantined)
 
-1. `scripts/census.ts` -> enumerates all discoverable Jordanian laws from public sources
-2. `scripts/ingest.ts` -> fetches HTML from sources, parses with parser.ts -> JSON seed files in `data/seed/`
-3. `scripts/build-db.ts` -> seed JSON -> SQLite database in `data/database.db`
-4. `scripts/generate-coverage.ts` -> generates COVERAGE.md from census data
+Previous pipeline steps removed 2026-04-26:
+- `scripts/census.ts` — removed (enumerated laws from contaminated sources)
+- `scripts/lib/fetcher.ts` — removed
+- `scripts/lib/parser.ts` — removed
+- `scripts/generate-coverage.ts` — removed
+
+Current stubs:
+- `scripts/ingest.ts` — quarantine stub, exits non-zero
+- `scripts/build-db.ts` — schema builder, functional but seed data is empty
 
 ## Data Sources
 
-- **jordan-lawyer.com** -- Primary source (54 statutes, WordPress full-text HTML in Arabic)
-- **jordanlaws.org** -- Secondary source (additional statutes, WordPress full-text HTML)
-- **constituteproject.org** -- Constitution of the Hashemite Kingdom of Jordan (1952, as amended)
-- **License:** Government Publication (public domain)
-- **Language:** Arabic (ar)
-- **Coverage:** 62 statutes, 5,285 provisions, 100% of discoverable ingestable laws
+**QUARANTINED.** All previous sources removed. Backfill candidate:
+
+- **Official Gazette of Jordan (الجريدة الرسمية)** — https://pm.gov.jo/
+  Phase 0 action: verify accessibility and reuse terms before implementing ingestion.
 
 ## Jordan-Specific Notes
 
 - Jordan uses a **civil law** legal system based on French and Ottoman legal traditions
 - The Constitution of 1952 is the supreme law (amended multiple times, most recently 2022)
 - The Legislation and Opinion Bureau (ديوان التشريع والرأي / lob.gov.jo) is the official repository
-- LOB uses an Angular SPA with encrypted RSA/AES API -- not scrapable; we use jordan-lawyer.com instead
 - Legislation is identified by law title + number + year (e.g., "قانون العقوبات رقم 16 لسنة 1960")
 - Arabic article markers: "المادة" (al-madda) for articles, "الباب" for parts, "الفصل" for chapters
 - Jordan enacted the Personal Data Protection Law No. 24 of 2023 (influenced by EU GDPR)
@@ -71,5 +77,5 @@ Jordan Law MCP server providing Jordanian legislation search via Model Context P
 
 ## Deployment
 
-- Vercel Strategy A: DB bundled in `data/database.db`, included via `vercel.json` includeFiles
 - npm package: `@ansvar/jordanian-law-mcp` with bin entry for stdio
+- Vercel deployment removed 2026-04-26 (`api/`, `vercel.json` deleted)

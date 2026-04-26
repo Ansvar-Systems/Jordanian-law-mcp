@@ -39,14 +39,13 @@ export function getAbout(db: InstanceType<typeof Database>, context: AboutContex
     version: context.version,
     jurisdiction: 'JO',
     description: 'Jordan Law MCP — legislation via Model Context Protocol',
+    status: 'quarantined',
+    status_reason:
+      'Dataset removed 2026-04-26. Previous sources (jordan-lawyer.com, jordanlaws.org) were ' +
+      'commercial/private aggregators with no recorded reuse rights. Backfill pending Phase 0 ' +
+      'verification of the Official Gazette of Jordan (https://pm.gov.jo/).',
     stats,
-    data_sources: [
-      {
-        name: 'Jordanian Legislation Portal',
-        url: 'https://lob.gov.jo',
-        authority: 'Legislation and Opinion Bureau',
-      },
-    ],
+    data_sources: [],
     freshness: {
       database_built: context.dbBuilt,
     },
