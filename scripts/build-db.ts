@@ -450,8 +450,8 @@ function buildDatabase(): void {
     insertMeta.run('built_at', new Date().toISOString());
     insertMeta.run('builder', 'build-db.ts');
     insertMeta.run('jurisdiction', 'JO');
-    insertMeta.run('source', 'jordan-lawyer.com, jordanlaws.org, constituteproject.org');
-    insertMeta.run('licence', 'Government Publication (public domain)');
+    insertMeta.run('source', 'QUARANTINED — pending Phase 0 verification of Official Gazette of Jordan (https://pm.gov.jo/)');
+    insertMeta.run('licence', 'UNKNOWN — pending reuse rights verification');
   });
   writeMeta();
 

@@ -1,8 +1,8 @@
 {
   "name": "@ansvar/jordanian-law-mcp",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "mcpName": "eu.ansvar/jordanian-law-mcp",
-  "description": "Jordan law database -- legislation from moj.gov.jo with full-text search, definitions, and EU cross-references",
+  "description": "Jordan law database — full-text search across statutes and provisions (data quarantined 2026-04-26; pending Official Gazette backfill)",
   "author": "Ansvar Systems <hello@ansvar.eu>",
   "license": "Apache-2.0",
   "repository": {
@@ -31,8 +31,7 @@
     "sources.yml",
     "fixtures/",
     "LICENSE",
-    "README.md",
-    "data/census.json"
+    "README.md"
   ],
   "publishConfig": {
     "access": "public"
@@ -46,7 +45,6 @@
     "start": "node dist/src/index.js",
     "start:stdio": "node dist/src/index.js --stdio",
     "health": "curl -s http://localhost:3000/health | jq .",
-    "census": "tsx scripts/census.ts",
     "build:db": "tsx scripts/build-db.ts",
     "ingest": "tsx scripts/ingest.ts",
     "drift:detect": "tsx scripts/drift-detect.ts",
@@ -60,7 +58,6 @@
   },
   "devDependencies": {
     "@types/node": "^22.0.0",
-    "@vercel/node": "^5.0.0",
     "better-sqlite3": "^11.0.0",
     "@types/better-sqlite3": "^7.6.0",
     "prettier": "^3.4.0",
