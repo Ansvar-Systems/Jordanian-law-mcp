@@ -33,12 +33,12 @@ export function generateResponseMetadata(
   }
 
   return {
-    data_source: 'Jordanian Legislation (jordan-lawyer.com, jordanlaws.org, constituteproject.org)',
+    data_source: 'QUARANTINED — pending Phase 0 verification of Official Gazette of Jordan (https://pm.gov.jo/)',
     jurisdiction: 'JO',
     disclaimer:
-      'This data is sourced from publicly available Jordanian legal texts. ' +
-      'The authoritative versions are published in the Official Gazette (الجريدة الرسمية). ' +
-      'Content is in Arabic. Always verify with the official Legislation and Opinion Bureau (lob.gov.jo).',
+      'Dataset quarantined 2026-04-26. Previous sources removed. ' +
+      'Backfill pending reuse rights verification of the Official Gazette of Jordan (الجريدة الرسمية). ' +
+      'Always verify with the official Legislation and Opinion Bureau (lob.gov.jo).',
     freshness,
   };
 }

@@ -3,63 +3,19 @@ schema_version: "1.0"
 mcp_name: "Jordan Law MCP"
 jurisdiction: "JO"
 
-sources:
-  - name: "jordan-lawyer.com"
-    authority: "Community legal portal (publishes official Jordanian legislation)"
-    official_portal: "https://jordan-lawyer.com"
-    canonical_identifier: "jordan-lawyer.com"
-    retrieval_method: "HTML scraping (WordPress pages)"
-    api_documentation: "N/A"
-    update_frequency: "as enacted"
-    last_ingested: "2026-02-28"
-    license_or_terms:
-      type: "Government Publication"
-      url: "https://jordan-lawyer.com"
-      summary: "Jordanian legislation is public domain as government publication; portal provides full-text Arabic HTML"
-    coverage:
-      scope: "54 core statutes: Civil Code, Penal Code, Commercial Code, Labor Law, Companies Law, Data Protection Law, Cybercrime Law, and 47 more"
-      limitations: "Does not include subsidiary legislation, ministerial orders, or regulations. Some newer laws may not yet be available."
-    languages:
-      - "ar"
+# QUARANTINED 2026-04-26
+# Previous sources (jordan-lawyer.com, jordanlaws.org) were commercial/private
+# aggregators with no recorded reuse rights. All data derived from those
+# sources has been removed from data/database.db, data/seed/, and data/census.json.
+#
+# Backfill candidate:
+#   Official Gazette of Jordan (الجريدة الرسمية)
+#   URL: https://pm.gov.jo/
+#   Phase 0 action: verify accessibility and reuse terms before any ingestion.
 
-  - name: "jordanlaws.org"
-    authority: "Community legal portal"
-    official_portal: "https://jordanlaws.org"
-    canonical_identifier: "jordanlaws.org"
-    retrieval_method: "HTML scraping (WordPress pages)"
-    api_documentation: "N/A"
-    update_frequency: "as enacted"
-    last_ingested: "2026-02-28"
-    license_or_terms:
-      type: "Government Publication"
-      url: "https://jordanlaws.org"
-      summary: "Jordanian legislation published as full-text Arabic HTML"
-    coverage:
-      scope: "7 statutes not available on jordan-lawyer.com, including Electronic Transactions Law"
-      limitations: "Smaller catalog than jordan-lawyer.com"
-    languages:
-      - "ar"
-
-  - name: "constituteproject.org"
-    authority: "Comparative Constitutions Project"
-    official_portal: "https://constituteproject.org"
-    canonical_identifier: "constituteproject.org"
-    retrieval_method: "HTML scraping"
-    api_documentation: "N/A"
-    update_frequency: "as amended"
-    last_ingested: "2026-02-28"
-    license_or_terms:
-      type: "Creative Commons"
-      url: "https://constituteproject.org"
-      summary: "Constitution text available under Creative Commons license"
-    coverage:
-      scope: "Constitution of the Hashemite Kingdom of Jordan (1952, as amended)"
-      limitations: "Constitution only"
-    languages:
-      - "ar"
-      - "en"
+sources: []
 
 data_freshness:
   automated_checks: false
-  check_frequency: "monthly"
-  last_verified: "2026-02-28"
+  check_frequency: "not scheduled — pending backfill source verification"
+  last_verified: null
